@@ -6,12 +6,24 @@ from flask import jsonify, request
 # Expenses Routes
 def get_expenses():
     expenses = Expense.query.all()
-    return jsonify([{'id': exp.id, 'description': exp.description, 'amount': exp.amount, 'date': exp.date, 'destination_id': exp.destination_id} for exp in expenses])
+    return jsonify([
+        {'id': exp.id,
+         'date': exp.date,
+         'amount': exp.amount,
+         'description': exp.description,
+         'destination_id': exp.destination_id
+         } for exp in expenses])
 
 # Create Expense
 def create_expense():
     data = request.get_json()
-    new_expense = Expense(description=data['description'], amount=data['amount'], date=datetime.utcnow(), destination_id=data['destination_id'])
+    new_expense = Expense(
+        amount=data['amount'],
+        date=datetime.utcnow(),
+        description=data['description'],
+        destination_id=data['destination_id']
+    )
+
     db.session.add(new_expense)
     db.session.commit()
     return jsonify({'message': 'Expense created successfully'})
@@ -23,9 +35,9 @@ def update_expense(expense_id):
         return jsonify({'error': 'Expense not found'}), 404
 
     data = request.get_json()
-    expense.description = data['description']
     expense.amount = data['amount']
     expense.date = datetime.utcnow()
+    expense.description = data['description']
 
     db.session.commit()
     return jsonify({'message': 'Expense updated successfully'})

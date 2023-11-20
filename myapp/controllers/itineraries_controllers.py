@@ -6,12 +6,22 @@ from myapp.models import Itinerary
 # Itineraries Routes
 def get_itineraries():
     itineraries = Itinerary.query.all()
-    return jsonify([{'id': itin.id, 'activity': itin.activity, 'date': itin.date, 'destination_id': itin.destination_id} for itin in itineraries])
+    return jsonify([
+        {'id': itin.id,
+         'date': itin.date,
+         'activity': itin.activity,
+         'destination_id': itin.destination_id
+         } for itin in itineraries])
 
 # Create itinerary
 def create_itinerary():
     data = request.get_json()
-    new_itinerary = Itinerary(activity=data['activity'], date=datetime.utcnow(), destination_id=data['destination_id'])
+    new_itinerary = Itinerary(
+        date=datetime.utcnow(),
+        activity=data['activity'],
+        destination_id=data['destination_id']
+    )
+
     db.session.add(new_itinerary)
     db.session.commit()
     return jsonify({'message': 'Itinerary created successfully'})
@@ -23,8 +33,8 @@ def update_itinerary(itinerary_id):
         return jsonify({'error': 'Itinerary not found'}), 404
 
     data = request.get_json()
-    itinerary.activity = data['activity']
     itinerary.date = datetime.utcnow()
+    itinerary.activity = data['activity']
 
     db.session.commit()
     return jsonify({'message': 'Itinerary updated successfully'})

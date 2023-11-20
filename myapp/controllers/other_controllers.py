@@ -1,4 +1,5 @@
-import os, requests
+import os
+import requests
 from dotenv import load_dotenv
 from flask import jsonify, request
 
@@ -25,12 +26,12 @@ def get_weather():
             weather_data = {
                 'location': location,
                 'temperature': data['main']['temp'],
-                'condition': data['weather'][0]['description'],
+                'wind_speed': data['wind']['speed'],
                 'humidity': data['main']['humidity'],
-                'wind_speed': data['wind']['speed']
+                'condition': data['weather'][0]['description'],
             }
             return jsonify(weather_data), 200
-        
+
         else:
             return jsonify({'error': 'Weather data not found.'}), 404
 

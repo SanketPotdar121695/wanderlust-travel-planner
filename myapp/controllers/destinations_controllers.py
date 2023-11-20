@@ -5,12 +5,22 @@ from myapp.models import Destination
 # Destination Routes
 def get_destinations():
     destinations = Destination.query.all()
-    return jsonify([{'id': dest.id, 'name': dest.name, 'description': dest.description, 'location': dest.location} for dest in destinations])
+    return jsonify([
+        {'id': dest.id,
+         'name': dest.name,
+         'location': dest.location,
+         'description': dest.description
+         } for dest in destinations])
 
 # Create Destination
 def create_destination():
     data = request.get_json()
-    new_destination = Destination(name=data['name'], description=data['description'], location=data['location'])
+    new_destination = Destination(
+        name=data['name'],
+        location=data['location'],
+        description=data['description']
+    )
+
     db.session.add(new_destination)
     db.session.commit()
     return jsonify({'message': 'Destination created successfully'})
@@ -23,8 +33,8 @@ def update_destination(destination_id):
 
     data = request.get_json()
     destination.name = data['name']
-    destination.description = data['description']
     destination.location = data['location']
+    destination.description = data['description']
 
     db.session.commit()
     return jsonify({'message': 'Destination updated successfully'})
