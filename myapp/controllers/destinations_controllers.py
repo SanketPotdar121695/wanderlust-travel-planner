@@ -10,7 +10,21 @@ def get_destinations():
          'name': dest.name,
          'location': dest.location,
          'description': dest.description
-         } for dest in destinations])
+        } for dest in destinations])
+
+# Get single destination
+def get_destination(destination_id):
+    destination = Destination.query.get(destination_id)
+
+    if destination:
+        return jsonify({
+            'id': destination.id,
+            'name': destination.name,
+            'location': destination.location,
+            'description': destination.description
+        })
+    else:
+        return jsonify({'message': 'Destination not found'}), 404
 
 # Create Destination
 def create_destination():

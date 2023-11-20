@@ -1,10 +1,15 @@
 from myapp import app
-from myapp.controllers.itineraries_controllers import get_itineraries, create_itinerary, update_itinerary, delete_itinerary
+from myapp.controllers.itineraries_controllers import get_itineraries, get_itinerary, create_itinerary, update_itinerary, delete_itinerary
 
 # Itineraries Routes
 @app.route('/itineraries', methods=['GET'])
 def itineraries_get():
     return get_itineraries()
+
+# Get a single itinerary
+@app.route('/itinerary/<int:itinerary_id>', methods=['GET'])
+def itinerary_get(itinerary_id):
+    return get_itinerary(itinerary_id)
 
 # Create itinerary
 @app.route('/itineraries', methods=['POST'])

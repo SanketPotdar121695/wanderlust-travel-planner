@@ -7,12 +7,27 @@ from flask import jsonify, request
 def get_expenses():
     expenses = Expense.query.all()
     return jsonify([
-        {'id': exp.id,
-         'date': exp.date,
-         'amount': exp.amount,
-         'description': exp.description,
-         'destination_id': exp.destination_id
-         } for exp in expenses])
+        {'id': expense.id,
+         'date': expense.date,
+         'amount': expense.amount,
+         'description': expense.description,
+         'destination_id': expense.destination_id
+         } for expense in expenses])
+
+# Get single expense
+def get_expense(expense_id):
+    expense = Expense.query.get(expense_id)
+
+    if expense:
+        return jsonify({
+            'id': expense.id,
+            'date': expense.date,
+            'amount': expense.amount,
+            'description': expense.description,
+            'destination_id': expense.destination_id
+         })
+    else:
+        return jsonify({'message': 'Expense not found'}), 404
 
 # Create Expense
 def create_expense():
