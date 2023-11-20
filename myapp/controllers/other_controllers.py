@@ -12,7 +12,6 @@ def welcome():
 # Route for Weather Information
 def get_weather():
     location = request.args.get('location')
-
     api_key = os.environ.get('openweather_api_key')
 
     # Define the OpenWeatherMap API URL with the location and API key
