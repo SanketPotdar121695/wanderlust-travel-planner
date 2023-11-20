@@ -1,5 +1,5 @@
-from myapp import app
 import os
+from myapp import app
 from dotenv import load_dotenv
 
 load_dotenv()
