@@ -73,25 +73,25 @@ The application defines the following data models:
 
 ### Destination Management
 
-- **Create a Destination**: `POST /destinations`
+- **Create a Destination**: `POST /destination`
 - **Get All Destinations**: `GET /destinations`
-- **Get a Destination by ID**: `GET /destinations/<int:destination_id>`
-- **Update a Destination by ID**: `PUT /destinations/<int:destination_id>`
-- **Delete a Destination by ID**: `DELETE /destinations/<int:destination_id>`
+- **Get a Destination by ID**: `GET /destination/<int:destination_id>`
+- **Update a Destination by ID**: `PUT /destination/<int:destination_id>`
+- **Delete a Destination by ID**: `DELETE /destination/<int:destination_id>`
 
 ### Itinerary Planning
 
-- **Create an Itinerary**: `POST /itineraries`
+- **Create an Itinerary**: `POST /itinerary`
 - **Get All Itineraries**: `GET /itineraries`
-- **Update an Itinerary by ID**: `PUT /itineraries/<int:itinerary_id>`
-- **Delete an Itinerary by ID**: `DELETE /itineraries/<int:itinerary_id>`
+- **Update an Itinerary by ID**: `PUT /itinerary/<int:itinerary_id>`
+- **Delete an Itinerary by ID**: `DELETE /itinerary/<int:itinerary_id>`
 
 ### Expense Tracking
 
-- **Create an Expense**: `POST /expenses`
+- **Create an Expense**: `POST /expense`
 - **Get All Expenses**: `GET /expenses`
-- **Update an Expense by ID**: `PUT /expenses/<int:expense_id>`
-- **Delete an Expense by ID**: `DELETE /expenses/<int:expense_id>`
+- **Update an Expense by ID**: `PUT /expense/<int:expense_id>`
+- **Delete an Expense by ID**: `DELETE /expense/<int:expense_id>`
 
 ### Weather Route
 
@@ -104,10 +104,10 @@ The application defines the following data models:
 1. Start the Flask application:
 
    ```bash
-   python app.py
+   python run.py
    ```
 
-2. Access the API using a tool like `curl` or a web browser.
+2. Access the API using a CLI tool like `git bash` or a web browser.
 
 3. Use the provided routes to manage destinations, itineraries, expenses, and check weather conditions.
 

@@ -14,21 +14,6 @@ def get_expenses():
          'destination_id': expense.destination_id
          } for expense in expenses])
 
-# Get single expense
-def get_expense(expense_id):
-    expense = Expense.query.get(expense_id)
-
-    if expense:
-        return jsonify({
-            'id': expense.id,
-            'date': expense.date,
-            'amount': expense.amount,
-            'description': expense.description,
-            'destination_id': expense.destination_id
-         })
-    else:
-        return jsonify({'message': 'Expense not found'}), 404
-
 # Create Expense
 def create_expense():
     data = request.get_json()

@@ -13,20 +13,6 @@ def get_itineraries():
          'destination_id': itinerary.destination_id
          } for itinerary in itineraries])
 
-# Get single itinerary
-def get_itinerary(itinerary_id):
-    itinerary = Itinerary.query.get(itinerary_id)
-
-    if itinerary:
-        return jsonify({
-            'id': itinerary.id,
-            'date': itinerary.date,
-            'activity': itinerary.activity,
-            'destination_id': itinerary.destination_id
-         })
-    else:
-        return jsonify({'message': 'Itinerary not found'}), 404
-
 # Create itinerary
 def create_itinerary():
     data = request.get_json()
